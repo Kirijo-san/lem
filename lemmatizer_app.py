@@ -26,13 +26,13 @@ if st.button("Лемматизировать"): #создается кнопка
     words = text.split() #если текст прошел проверку, программа идет дальше
     lemmas = [] #и разбивает текст на слова
     
-for word in re.findall(r'[а-яА-ЯёЁ]+', text): #работаем только со словами, числа и знаки препинания/символы неважны
+for word in re.findall(r'[а-яА-ЯёЁ]+', text):
     try:
-        parsed = morph.parse(word) #возвращает все варианты разбора слова
-        if parsed: #если они присутствуют - 
-            lemmas.append(parsed[0].normal_form) #то анализатор найдет самый подходящий вариант базового разбора слова
+        parsed = morph.parse(word)
+        if parsed:
+            lemmas.append(parsed[0].normal_form)
     except:
-        lemmas.append(word) #если не найдется ничего, то слово останется в изначальной форме
+        lemmas.append(word)
     
 st.subheader("Результат:") #создаем подзаголовок результата и называем его
 st.write(" ".join(lemmas)) #вывод всех лемм через пробел
