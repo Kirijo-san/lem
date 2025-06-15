@@ -16,4 +16,4 @@ streamlit run lemmatizer_app.py
 
 ## Онлайн-версия
 
-Доступна по ссылке: [https://your-app-name.streamlit.app](https://your-app-name.streamlit.app)
+Доступна по ссылке: [https://your-app-name.streamlit.app(https://lemmatizationapp.streamlit.app)
