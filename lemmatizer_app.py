@@ -11,7 +11,6 @@ except Exception as e: #если в ходе запуска произойдет
     st.stop() #...и приложение остановится
 
 def is_russian(text): #проверяем, написан ли текст на русском языке
-    """Проверяет, содержит ли текст только русские буквы и разрешенные символы"""
     russian_letters = re.compile(r'^[а-яА-ЯёЁ\s\d\.,!?;:-') #сам список разрешенных символов: русские буквы, пробелы, числа и знаки препинания
     return bool(russian_letters.fullmatch(text))
 
@@ -26,13 +25,13 @@ if st.button("Лемматизировать"): #создается кнопка
     words = text.split() #если текст прошел проверку, программа идет дальше
     lemmas = [] #и разбивает текст на слова
     
-for word in re.findall(r'[а-яА-ЯёЁ]+', text):
+for word in re.findall(r'[а-яА-ЯёЁ]+', text): #работаем только со словами, числа и знаки препинания/символы неважны
     try:
-        parsed = morph.parse(word)
-        if parsed:
-            lemmas.append(parsed[0].normal_form)
-    except:
-        lemmas.append(word)
+        parsed = morph.parse(word) #возвращает все варианты разбора слова
+        if parsed: #если они присутствуют - 
+            lemmas.append(parsed[0].normal_form) #то анализатор найдет самый подходящий вариант базового разбора слова
+     except:
+        lemmas.append(word) #если не найдется ничего, то слово останется в изначальной форме
     
 st.subheader("Результат:") #создаем подзаголовок результата и называем его
 st.write(" ".join(lemmas)) #вывод всех лемм через пробел
